@@ -12,8 +12,11 @@ export class MainComponent implements OnInit {
   notes:any = [{}];
   date = new Date();
   sortForm: FormGroup;
-  sortParam: any;
-  filterParam: any;
+  filterParam: string = '';
+  sortParam: string = '';
+  visibility = false;
+  now = new Date();
+  nowDate = `${this.now.getFullYear()}-${this.now.getMonth()<10? `0${this.now.getMonth()+1}`: this.now.getMonth()+1}-${this.now.getDate()}`;
   
   constructor(
     private http: HttpService,
@@ -26,17 +29,6 @@ export class MainComponent implements OnInit {
 
   async ngOnInit() {
     this.notes = await this.http.getNotes();
-    let sort = this.http.getSort();
-    this.sortParam = (isNullOrUndefined(await sort)) ? '' : await sort;
-    console.log(this.sortParam)
-    // this.sortParam = this.sortParam[1]["name"];
-    let filter = this.http.getFilter();
-    this.filterParam = (isNullOrUndefined(await filter)) ? '' : await filter;
-    this.filterParam = this.filterParam[1]["name"]
-    this.sortForm.patchValue({
-      sort: this.sortParam
-    })
-    console.log(this.sortParam, this.filterParam);
   }
 
   async onDelete(id: number){
@@ -45,18 +37,17 @@ export class MainComponent implements OnInit {
   }
 
   async sorting(){
-    this.sortParam = this.sortForm.value.sort;
-    await this.http.putSort({
-      "id": 1,
-      "name" : this.sortParam,
-    });
+    this.notes = await this.http.getNotes();
   }
 
-  async filtering(){
-    await this.http.putFilter({
-      "id": 1,
-      "name": this.filterParam,
-    })
+  dateValid(dateExit){
+    if (this.dateToString(dateExit) < this.dateToString(this.nowDate)){
+      return false;
+    }else return true;
+  }
+
+  dateToString(date){
+    return Number(String(date).split('-').join(''));
   }
 
 }

@@ -14,6 +14,7 @@ export class AddingComponent implements OnInit {
   note;
   disabled = false;
   now = new Date();
+  nowDate = `${this.now.getFullYear()}-${this.now.getMonth()<10? `0${this.now.getMonth()+1}`: this.now.getMonth()+1}-${this.now.getDate()}`;
 
   constructor(private http: HttpService, 
     private router: Router) {
@@ -38,7 +39,7 @@ export class AddingComponent implements OnInit {
     try{
       this.note = await this.http.postNotes(
         {
-          "dateAdd": `${this.now.getFullYear()}-${this.now.getMonth()+1}-${this.now.getDate()}`, //2000-02-02
+          "dateAdd": `${this.now.getFullYear()}-${this.now.getMonth()<10? `0${this.now.getMonth()+1}`: this.now.getMonth()+1}-${this.now.getDate()}`, //2000-02-02
           "body": this.noteForm.value.text,
           "dateExit": this.noteForm.value.date
         }
@@ -48,5 +49,9 @@ export class AddingComponent implements OnInit {
       console.error(e)
     }
   }
+
+  
+
+
 
 }
