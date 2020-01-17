@@ -1,6 +1,19 @@
 
     
 <div class="container  ">
+  
+  <div class="form-group" [formGroup]="sortForm">
+    <label for="exampleFormControlSelect2">Example multiple select</label>
+    <select formControlName="sort" (change)="sorting()" class="form-control" id="exampleFormControlSelect2">
+      <option selected > Сортировка</option>
+      <option value="dateAdd">По дате создания</option>
+      <option value="dateExit">По дате окончания</option>
+    </select>
+  </div>
+  <div class="forn-group">
+    <input type="text" class="form-control" [(ngModel)]="filterParam" (blur)="filtering()">
+  </div>
+
     
     <div class="row">
 
@@ -8,9 +21,7 @@
       <div class="col-3"> Текст заметки</div>
       <div class="col-3"><p class="date">Дата окончания </p></div>    
     </div>
-
-
-    <div class="row" *ngFor="let note of notes">
+    <div class="row" *ngFor="let note of notes | sort: sortParam : filterParam">
       <div class="col-3"><p class="date"> {{note.dateAdd}} </p></div>
       <div class="col-3"><a [routerLink]="['edit', note.id]"> {{note.body}} </a></div>
       <div class="col-3"><p > {{note.dateExit}} </p></div>

@@ -1,11 +1,11 @@
-<div class="container">
-<form  [formGroup]="noteForm" (ngSubmit)="edit()">
+<div class="container" *ngIf="note">
+<form  [formGroup]="editForm" (ngSubmit)="edit()">
     <div class="form-group">
         <label for="exampleFormControlTextarea1">Example textarea</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName="text"></textarea>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName="text"></textarea>
         <input type="date" class="form-control" formControlName="date">
-        <p class="text text-danger" *ngIf="noteForm.invalid">Все поля должны быть запонены!</p>
-        <button [disabled]="noteForm.invalid" class="btn btn-success" type="submit">Добавить</button>
+        <p class="text text-danger" *ngIf="editForm.invalid">Все поля должны быть запонены!</p>
+        <button [disabled]="editForm.invalid" class="btn btn-success" type="submit">Добавить</button>
 
       </div>
 </form>

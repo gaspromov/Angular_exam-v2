@@ -10,7 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class EditComponent implements OnInit {
   id:number;
-  noteForm: FormGroup;
+  editForm: FormGroup;
   note;
   disabled = false;
 
@@ -23,10 +23,10 @@ export class EditComponent implements OnInit {
       this.id = param.id;
     })
   }
-  
+
   ngOnInit() {
     this.getNote().then(() => {
-      this.noteForm = new FormGroup(
+      this.editForm = new FormGroup(
         {
           text: new FormControl({value: this.note.body, disabled: this.disabled}, [Validators.required]),
           date: new FormControl({value: this.note.dateExit, disabled: this.disabled}, [Validators.required]),
@@ -50,8 +50,8 @@ export class EditComponent implements OnInit {
         this.id,
         {
           dateAdd: this.note.dateAdd,
-          body: this.noteForm.value.text,
-          dateExit: this.noteForm.value.date,
+          body: this.editForm.value.text,
+          dateExit: this.editForm.value.date,
         }
         );
       this.route.navigate(['/']);

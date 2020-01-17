@@ -1,24 +1,28 @@
 {
   "notes": [
     {
-      "dateAdd": "2020-0-17",
-      "body": "jhbhjbhbол",
-      "dateExit": "2000-02-20",
+      "dateAdd": "2020-1-17",
+      "body": "шошошош",
+      "dateExit": "2019-12-10",
       "id": 1
     },
     {
       "dateAdd": "2020-1-17",
-      "body": "отот",
-      "dateExit": "2002-02-22",
+      "body": "kkmewfpoewfjwefj",
+      "dateExit": "2000-02-22",
       "id": 2
     }
   ],
-  "sort": {
-    "id": 0,
-    "name": ""
-  },
-  "filter": {
-    "id": 0,
-    "name": ""
-  }
+  "sort": [
+    {
+      "id": 1,
+      "name": "dateExit"
+    }
+  ],
+  "filter": [
+    {
+      "id": 1,
+      "name": ""
+    }
+  ]
 }
