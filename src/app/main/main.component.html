@@ -1,0 +1,19 @@
+
+    
+<div class="container  ">
+    
+    <div class="row">
+
+      <div class="col-3"><p class="date">  Дата добавления </p></div>
+      <div class="col-3"> Текст заметки</div>
+      <div class="col-3"><p class="date">Дата окончания </p></div>    
+    </div>
+
+
+    <div class="row" *ngFor="let note of notes">
+      <div class="col-3"><p class="date"> {{note.dateAdd}} </p></div>
+      <div class="col-3"><a [routerLink]="['edit', note.id]"> {{note.body}} </a></div>
+      <div class="col-3"><p > {{note.dateExit}} </p></div>
+      <div class="col-3"><button class="btn btn-sm btn-danger" (click)="onDelete(note.id)">Удалить</button> </div>
+    </div>
+</div>

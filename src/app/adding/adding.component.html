@@ -1,0 +1,11 @@
+<div class="container">
+<form  [formGroup]="noteForm" (ngSubmit)="add()">
+    <div class="form-group">
+        <label for="exampleFormControlTextarea1">Example textarea</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName="text" ></textarea>
+        <input type="date" class="form-control" formControlName="date">
+        <button [disabled]="noteForm.invalid" class="btn btn-success" type="submit">Добавить</button>
+        <p *ngIf="noteForm.invalid" class="text text-danger">Заполните все поля, чтобы добавить заметку</p>
+      </div>
+</form>
+</div>
