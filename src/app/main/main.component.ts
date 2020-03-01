@@ -37,7 +37,6 @@ export class MainComponent implements OnInit {
   }
 
   async sorting(){
-    this.notes = await this.http.getNotes();
   }
 
   dateValid(dateExit){
